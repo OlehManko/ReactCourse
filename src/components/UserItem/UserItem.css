@@ -1,0 +1,23 @@
+.user-item {
+  border: 1px solid blue;
+  border-radius: 4px;
+  padding: 0.3rem;
+
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem;
+}
+
+.user-item button {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  justify-self: end;
+  align-self: center;
+
+  padding: 0.3rem;
+}
+
+.user-item span {
+  color: blue;
+  font-style: italic;
+}

@@ -1,0 +1,27 @@
+.card {
+  border: 2px solid blue;
+  padding: 0.5rem;
+  max-width: 20rem;
+}
+
+.card h2 {
+  text-align: center;
+}
+
+.card input {
+  display: block;
+}
+
+.card label {
+  font-weight: 600;
+  font-style: italic;
+}
+
+.card hr {
+  margin: 0.5rem 0;
+}
+
+.card-control {
+  display: flex;
+  justify-content: space-between;
+}
