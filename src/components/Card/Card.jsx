@@ -13,8 +13,6 @@ export const Card = ({ children }) => {
 
   // variable for link to uncontrolled input
   const inputRef = useRef(null);
-  {
-  }
 
   console.log('Re-render', inputRef);
 

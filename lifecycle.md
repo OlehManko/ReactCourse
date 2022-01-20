@@ -17,5 +17,5 @@ Update --> Unmount
     note left of Mount : useEffect(callback, [])
 
     note right of Update : useEffect(callback, [arg1, arg2])
-    note left of Unmount : useEffect(()=>{return ()=> {}}), [])
+    note left of Unmount : useEffect(()=>{return ()=> {localStorage.clear()}}), [])
 ```

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Card } from './components/Card/Card';
 import { UserItem } from './components/UserItem/UserItem';
@@ -10,14 +10,37 @@ const LIST_USERS = [
 ];
 
 function App() {
+  const [users, setUsers] = useState([]);
+
+  const [caption, setCaption] = useState('');
+
+  useEffect(() => {
+    // fetch('url')
+    //   .then((data) => data.json())
+    //   .then((json) => setUsers(json));
+
+    setUsers(LIST_USERS);
+
+    // return () => {
+    //   localStorage.setItem('data', 'any');
+    // };
+  }, []);
+
+  useEffect(() => {
+    if (users.length < 2) {
+      setCaption('Alarm');
+    } else setCaption('');
+  }, [users]);
+
   function clickHAndler() {
     console.log("It's click");
     localStorage.setItem('data', 'something');
+    // localStorage.clear();
   }
 
   return (
     <div className="App">
-      {LIST_USERS.map((item, index) => (
+      {users.map((item, index) => (
         <UserItem
           name={item.name}
           age={item.age}
@@ -26,9 +49,15 @@ function App() {
           printCons={clickHAndler}
           disabled={false}
         >
-          <Card>Odessa</Card>
+          {
+            <>
+              <h4 style={{ color: 'red' }}>{caption}</h4>
+              <h4>Header 2</h4>
+            </>
+          }
         </UserItem>
       ))}
+
       {/* <Card /> */}
     </div>
   );
