@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Card } from './components/Card/Card';
+import { UserForm } from './components/UserForm/UserForm';
 import { UserItem } from './components/UserItem/UserItem';
 
 const LIST_USERS = [
@@ -27,6 +28,10 @@ function App() {
   }, []);
 
   useEffect(() => {
+    let temp = [...users];
+    temp.push([]);
+    setUsers(temp);
+
     if (users.length < 2) {
       setCaption('Alarm');
     } else setCaption('');
@@ -40,6 +45,7 @@ function App() {
 
   return (
     <div className="App">
+      <UserForm createUser={setUsers} />
       {users.map((item, index) => (
         <UserItem
           name={item.name}
