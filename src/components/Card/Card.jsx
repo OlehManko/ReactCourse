@@ -5,12 +5,16 @@ const incr = 1;
 
 const styleH3 = { color: 'darkgreen' };
 
-export const Card = () => {
+export const Card = ({ children }) => {
   const [count, setCount] = useState(20);
+
   // State for controlled input
   const [line, setLine] = useState('Initial text');
+
   // variable for link to uncontrolled input
   const inputRef = useRef(null);
+  {
+  }
 
   console.log('Re-render', inputRef);
 
@@ -44,7 +48,10 @@ export const Card = () => {
 
   return (
     <div className="card">
-      <h2>DEMO</h2>
+      <h2>
+        DEMO {'  '}
+        {children}
+      </h2>
       <h3 style={{ color: 'darkblue' }}>{`Result: ${count}`}</h3>
       <hr />
       <div className="card-control">

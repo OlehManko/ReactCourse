@@ -12,7 +12,9 @@ const LIST_USERS = [
 function App() {
   function clickHAndler() {
     console.log("It's click");
+    localStorage.setItem('data', 'something');
   }
+
   return (
     <div className="App">
       {LIST_USERS.map((item, index) => (
@@ -21,11 +23,13 @@ function App() {
           age={item.age}
           role={item.role}
           key={index}
-          onClick={clickHAndler}
+          printCons={clickHAndler}
           disabled={false}
-        />
+        >
+          <Card>Odessa</Card>
+        </UserItem>
       ))}
-      <Card />
+      {/* <Card /> */}
     </div>
   );
 }
