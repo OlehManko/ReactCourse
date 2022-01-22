@@ -1,0 +1,26 @@
+.courseBtn {
+  padding: 0.4rem 0.8rem;
+  color: blue;
+  background-color: rgb(199, 199, 241);
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+.courseBtn:hover {
+  outline: 3px solid blue;
+  outline-offset: -3px;
+}
+
+.danger {
+  color: crimson;
+  background-color: rgb(241, 211, 217);
+}
+
+.courseBtn:hover:disabled {
+  outline: none;
+}
+
+.courseBtn:disabled {
+  background-color: rgb(154, 154, 156);
+  color: rgb(73, 71, 71);
+}

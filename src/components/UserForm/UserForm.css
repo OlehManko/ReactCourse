@@ -1,0 +1,13 @@
+.user-form {
+  border: 1px solid green;
+  border-radius: 4px;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: [startline] max-content 1fr [endline];
+  gap: 1rem;
+}
+
+.user-form > h2 {
+  grid-column: startline / endline;
+  text-align: center;
+}

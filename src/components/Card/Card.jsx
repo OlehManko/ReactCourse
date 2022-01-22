@@ -14,7 +14,12 @@ export const Card = ({ children }) => {
   // variable for link to uncontrolled input
   const inputRef = useRef(null);
 
-  console.log('Re-render', inputRef);
+  const { current: myInputForName } = inputRef;
+
+  console.log('Re-render', myInputForName?.value);
+
+  // {cuurent: null}
+  // {cuurent: inputRef.current.value}
 
   //  This action will do when changed count state
   useEffect(() => {

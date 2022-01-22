@@ -18,3 +18,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+input,
+select {
+  padding: 0.3rem;
+}

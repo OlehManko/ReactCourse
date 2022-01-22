@@ -1,4 +1,5 @@
 import React from 'react';
+import { ButtonCourse } from '../../Button/ButtonCourse';
 import './UserItem.css';
 
 // export const UserItem = (props) => {
@@ -8,10 +9,13 @@ export const UserItem = ({
   name: nameNew,
   age,
   role = 'defaultValue',
-  printCons,
+  removeThisUser,
   children,
+  id,
   ...props
 }) => {
+  const state = age < 20;
+  // console.table({ nameNew, age, id });
   return (
     <div className="user-item">
       <h3>
@@ -21,7 +25,13 @@ export const UserItem = ({
       <h3>
         Age: <span>{age}</span> with role:<span>{role}</span>
       </h3>
-      <button onClick={printCons}>Delete</button>
+      <ButtonCourse
+        onClick={(e) => removeThisUser(id)}
+        variant="danger"
+        disabled={state}
+      >
+        Delete
+      </ButtonCourse>
     </div>
   );
 };
