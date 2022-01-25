@@ -1,0 +1,14 @@
+.modal-crs {
+  display: grid;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  place-content: center;
+  background-color: rgba(14, 13, 13, 0.609);
+}
+
+.hide {
+  display: none;
+}

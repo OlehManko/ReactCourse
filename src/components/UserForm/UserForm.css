@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: [startline] max-content 1fr [endline];
   gap: 1rem;
+  background: #fff;
 }
 
 .user-form > h2 {

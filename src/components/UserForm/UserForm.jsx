@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ButtonCourse } from '../../Button/ButtonCourse';
 import './UserForm.css';
 
-const ROLE_USER = [
+export const ROLE_USER = [
   { value: 'admin', label: 'Admin role' },
   { value: 'user', label: 'User role' },
 ];
@@ -11,6 +11,7 @@ export const UserForm = ({ createUser }) => {
   const [name, setName] = useState('');
   const [age, setAge] = useState(33);
   const [role, setRole] = useState('');
+  const [isDisabled, setDisabled] = useState(true);
 
   const changeAge = (e) => {
     let temp = e.target.value;
@@ -21,9 +22,17 @@ export const UserForm = ({ createUser }) => {
     setName(e.target.value);
   };
 
+  useEffect(() => {
+    if (name.length > 3 && role.length > 0) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [name, role]);
+
   const handleData = (e) => {
     e.preventDefault();
-    const newUser = { name: name, age: age, role: role, id: Date.now() };
+    const newUser = { name, age, role, id: Date.now() };
     createUser(newUser);
   };
 
@@ -42,10 +51,12 @@ export const UserForm = ({ createUser }) => {
           Choose role
         </option>
         {ROLE_USER.map((item) => (
-          <option value={item.value}>{item.label}</option>
+          <option value={item.value} key={item.value}>
+            {item.label}
+          </option>
         ))}
       </select>
-      <ButtonCourse>Send Data</ButtonCourse>
+      <ButtonCourse disabled={isDisabled}>Send Data</ButtonCourse>
     </form>
   );
 };
