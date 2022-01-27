@@ -5,16 +5,11 @@ import { ModalCourse } from "./components/Modal/Modal";
 import { UserForm } from "./components/UserForm/UserForm";
 import { UserList } from "./components/UsersList/UserList";
 
-const LIST_USERS = [
-  { name: "Alex", age: 42, role: "admin", id: 1 },
-  { name: "Igor", age: 22, role: "user", id: 2 },
-  { name: "Oleh", age: 23, role: "user", id: 3 },
-];
-
 const url = "https://jsonplaceholder.typicode.com/users?_limit=10";
 
 function App() {
   const [users, setUsers] = useState([]);
+  const [roles, setRoles] = useState([]);
 
   const [isShowModal, setShowModal] = useState(false);
 
@@ -33,7 +28,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // localStorage.setItem("user", JSON.stringify(users));
+    let rolesCandidate = users.map((item) => item.role);
+    setRoles(rolesCandidate);
   }, [users]);
 
   function deleteUser(userID) {
@@ -60,7 +56,7 @@ function App() {
       </header>
       <UserList users={users} deleteUser={deleteUser} />
       <ModalCourse show={isShowModal} close={closeMdl}>
-        <UserForm createUser={addUser} />
+        <UserForm createUser={addUser} roles={roles} />
       </ModalCourse>
     </div>
   );

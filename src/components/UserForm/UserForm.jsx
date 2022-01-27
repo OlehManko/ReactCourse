@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { ButtonCourse } from '../../Button/ButtonCourse';
-import './UserForm.css';
+import React, { useEffect, useState } from "react";
+import { ButtonCourse } from "../../Button/ButtonCourse";
+import "./UserForm.css";
 
-export const ROLE_USER = [
-  { value: 'admin', label: 'Admin role' },
-  { value: 'user', label: 'User role' },
-];
-
-export const UserForm = ({ createUser }) => {
-  const [name, setName] = useState('');
+export const UserForm = ({ createUser, roles: ROLE_USER = [] }) => {
+  const [name, setName] = useState("");
   const [age, setAge] = useState(33);
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState("");
   const [isDisabled, setDisabled] = useState(true);
 
   const changeAge = (e) => {
@@ -51,8 +46,8 @@ export const UserForm = ({ createUser }) => {
           Choose role
         </option>
         {ROLE_USER.map((item) => (
-          <option value={item.value} key={item.value}>
-            {item.label}
+          <option value={item} key={item}>
+            {item}
           </option>
         ))}
       </select>
