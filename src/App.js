@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import { ButtonCourse } from './Button/ButtonCourse';
-import { ModalCourse } from './components/Modal/Modal';
-import { UserForm } from './components/UserForm/UserForm';
-import { UserList } from './components/UsersList/UserList';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { ButtonCourse } from "./Button/ButtonCourse";
+import { ModalCourse } from "./components/Modal/Modal";
+import { UserForm } from "./components/UserForm/UserForm";
+import { UserList } from "./components/UsersList/UserList";
 
 const LIST_USERS = [
-  { name: 'Alex', age: 42, role: 'admin', id: 1 },
-  { name: 'Igor', age: 22, role: 'user', id: 2 },
-  { name: 'Oleh', age: 23, role: 'user', id: 3 },
+  { name: "Alex", age: 42, role: "admin", id: 1 },
+  { name: "Igor", age: 22, role: "user", id: 2 },
+  { name: "Oleh", age: 23, role: "user", id: 3 },
 ];
+
+const url = "https://jsonplaceholder.typicode.com/users?_limit=10";
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -17,8 +19,22 @@ function App() {
   const [isShowModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    setUsers(LIST_USERS);
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        let temp = json.map((item) => ({
+          name: item.name,
+          age: parseInt(item.address?.suite.split(" ")[1]),
+          role: item.company.name,
+          id: item.id,
+        }));
+        setUsers(temp);
+      });
   }, []);
+
+  useEffect(() => {
+    // localStorage.setItem("user", JSON.stringify(users));
+  }, [users]);
 
   function deleteUser(userID) {
     let temp = users.filter((item) => item.id !== userID);
@@ -32,12 +48,8 @@ function App() {
     setShowModal(false);
   };
 
-  useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(users));
-  }, [users]);
-
   const closeMdl = () => {
-    console.log('click to close');
+    console.log("click to close");
     setShowModal(false);
   };
 
