@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ButtonCourse } from "../../Button/ButtonCourse";
+import { ButtonCourse } from "../Button/ButtonCourse";
 import "./UserForm.css";
 
 export const UserForm = ({ createUser, roles: ROLE_USER = [] }) => {

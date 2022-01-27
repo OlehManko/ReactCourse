@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { ButtonCourse } from "./Button/ButtonCourse";
+import { ButtonCourse } from "./components/Button/ButtonCourse";
 import { ModalCourse } from "./components/Modal/Modal";
 import { UserForm } from "./components/UserForm/UserForm";
 import { UserList } from "./components/UsersList/UserList";

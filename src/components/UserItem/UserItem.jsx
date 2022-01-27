@@ -1,6 +1,6 @@
-import React from 'react';
-import { ButtonCourse } from '../../Button/ButtonCourse';
-import './UserItem.css';
+import React from "react";
+import { ButtonCourse } from "../Button/ButtonCourse";
+import "./UserItem.css";
 
 // export const UserItem = (props) => {
 //   const { name: nameNew, age, role } = props;
@@ -8,7 +8,7 @@ import './UserItem.css';
 export const UserItem = ({
   name: nameNew,
   age,
-  role = 'defaultValue',
+  role = "defaultValue",
   removeThisUser,
   children,
   id,
