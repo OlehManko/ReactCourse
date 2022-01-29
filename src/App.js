@@ -1,17 +1,24 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import { ButtonCourse } from "./components/Button/ButtonCourse";
-import { ModalCourse } from "./components/Modal/Modal";
-import { UserForm } from "./components/UserForm/UserForm";
-import { UserList } from "./components/UsersList/UserList";
+import React, { useState, useEffect } from 'react';
+import './App.css';
+import { ButtonCourse } from './components/Button/ButtonCourse';
+import { ModalCourse } from './components/Modal/Modal';
+import { UserForm } from './components/UserForm/UserForm';
+import { UserList } from './components/UsersList/UserList';
 
-const url = "https://jsonplaceholder.typicode.com/users?_limit=10";
+const url = 'https://jsonplaceholder.typicode.com/users?_limit=10';
 
 function App() {
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState([]);
+  const [theme, setTheme] = useState('ligth');
 
   const [isShowModal, setShowModal] = useState(false);
+
+  const changeTheme = () => {
+    document.body.setAttribute('data-theme', theme);
+  };
+
+  useEffect(changeTheme, [theme]);
 
   useEffect(() => {
     fetch(url)
@@ -19,7 +26,7 @@ function App() {
       .then((json) => {
         let temp = json.map((item) => ({
           name: item.name,
-          age: parseInt(item.address?.suite.split(" ")[1]),
+          age: parseInt(item.address?.suite.split(' ')[1]),
           role: item.company.name,
           id: item.id,
         }));
@@ -45,7 +52,7 @@ function App() {
   };
 
   const closeMdl = () => {
-    console.log("click to close");
+    console.log('click to close');
     setShowModal(false);
   };
 
@@ -53,6 +60,11 @@ function App() {
     <div className="App">
       <header>
         <ButtonCourse onClick={() => setShowModal(true)}>Add user</ButtonCourse>
+        <ButtonCourse
+          onClick={() => setTheme(theme === 'ligth' ? 'dark' : 'ligth')}
+        >
+          Change theme
+        </ButtonCourse>
       </header>
       <UserList users={users} deleteUser={deleteUser} />
       <ModalCourse show={isShowModal} close={closeMdl}>

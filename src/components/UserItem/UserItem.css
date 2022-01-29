@@ -18,6 +18,6 @@
 }
 
 .user-item span {
-  color: blue;
+  color: var(--fnt-color-value);
   font-style: italic;
 }

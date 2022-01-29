@@ -23,3 +23,20 @@ input,
 select {
   padding: 0.3rem;
 }
+
+body[data-theme='dark'] {
+  --fnt-color: white;
+  --bg-color: darkblue;
+  --fnt-color-value: yellow;
+}
+
+body[data-theme='ligth'] {
+  --fnt-color: darkblue;
+  --bg-color: white;
+  --fnt-color-value: blue;
+}
+
+body {
+  color: var(--fnt-color);
+  background-color: var(--bg-color);
+}
