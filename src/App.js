@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { HeaderCourse } from './components/Header/Header';
 import { ModalCourse } from './components/Modal/Modal';
 import { UserForm } from './components/UserForm/UserForm';
+import { About } from './components/About';
+import { Contact } from './components/Contact';
 import { UserList } from './components/UsersList/UserList';
 
 const url = 'https://jsonplaceholder.typicode.com/users?_limit=10';
@@ -51,11 +54,23 @@ function App() {
   return (
     <div className="App">
       <HeaderCourse />
-      <UserList
-        users={users}
-        deleteUser={deleteUser}
-        setShowModal={setShowModal}
-      />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <UserList
+              users={users}
+              deleteUser={deleteUser}
+              setShowModal={setShowModal}
+            />
+          }
+        />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<h2>Something went wrong :(</h2>} />
+      </Routes>
+
       <ModalCourse show={isShowModal} close={closeMdl}>
         <UserForm createUser={addUser} roles={roles} />
       </ModalCourse>

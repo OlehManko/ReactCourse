@@ -1,13 +1,18 @@
 .headercrs {
   display: grid;
-  grid-template-columns: 1fr max-content;
+  grid-template-columns: repeat(3, max-content) 1fr;
   gap: 1rem;
   border: 1px solid black;
   border-radius: 4px;
   padding: 0.5rem;
   filter: drop-shadow(2px 2px 2px black);
+  align-items: center;
 }
 
 .headercrs > button {
   justify-self: start;
+}
+
+.headercrs > svg {
+  justify-self: end;
 }
