@@ -1,0 +1,16 @@
+.control {
+  display: grid;
+  grid-template-columns: 200px 1fr max-content;
+  gap: 1rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+.add-user {
+  filter: drop-shadow(2px 2px 2px black);
+  cursor: pointer;
+}
+
+.add-user:hover {
+  color: orange;
+}

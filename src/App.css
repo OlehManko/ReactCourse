@@ -24,13 +24,15 @@ select {
   padding: 0.3rem;
 }
 
+/* General variables */
+
 body[data-theme='dark'] {
   --fnt-color: white;
   --bg-color: darkblue;
   --fnt-color-value: yellow;
 }
 
-body[data-theme='ligth'] {
+body[data-theme='light'] {
   --fnt-color: darkblue;
   --bg-color: white;
   --fnt-color-value: blue;

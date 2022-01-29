@@ -1,41 +1,26 @@
-import React, { useState } from "react";
-import { sortList } from "../../utils/helpers";
-import { UserItem } from "../UserItem/UserItem";
+import React, { useState } from 'react';
+import { sortList } from '../../utils/helpers';
+import { ControlPlace } from '../ControlPlace/ControlPlace';
+import { UserItem } from '../UserItem/UserItem';
 
-const SORT_PROP = [
-  { value: "any", label: "Any" },
-  { value: "name", label: "Sort by name" },
-  { value: "age", label: "Sort by age" },
-];
-
-export const UserList = ({ users, deleteUser }) => {
-  const [typeSort, setTypeSort] = useState("any");
-  const [line, setLine] = useState("");
-
-  console.log("Re-rendering");
+export const UserList = ({ users, deleteUser, setShowModal }) => {
+  const [filter, setFilter] = useState({ typeSort: 'any', line: '' });
 
   const sortedArray = sortList(
-    typeSort,
-    users.filter((item) => item.name.toLowerCase().includes(line.toLowerCase()))
+    filter.typeSort,
+    users.filter((item) =>
+      item.name.toLowerCase().includes(filter.line.toLowerCase())
+    )
   );
 
   return (
     <>
       <h2>Our emploees</h2>
-      <div>
-        <select value={typeSort} onChange={(e) => setTypeSort(e.target.value)}>
-          {SORT_PROP.map((item) => (
-            <option value={item.value} key={item.value}>
-              {item.label}
-            </option>
-          ))}
-        </select>
-        <input
-          type="search"
-          value={line}
-          onChange={(e) => setLine(e.target.value)}
-        />
-      </div>
+      <ControlPlace
+        filter={filter}
+        setFilter={setFilter}
+        addUserDlg={setShowModal}
+      />
       {users?.length ? (
         sortedArray.map((item, index) => (
           <UserItem
@@ -49,7 +34,7 @@ export const UserList = ({ users, deleteUser }) => {
           />
         ))
       ) : (
-        <h1 style={{ textAlign: "center" }}>Empty list</h1>
+        <h1 style={{ textAlign: 'center' }}>Empty list</h1>
       )}
     </>
   );

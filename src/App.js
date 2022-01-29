@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { ButtonCourse } from './components/Button/ButtonCourse';
+import { HeaderCourse } from './components/Header/Header';
 import { ModalCourse } from './components/Modal/Modal';
 import { UserForm } from './components/UserForm/UserForm';
 import { UserList } from './components/UsersList/UserList';
@@ -10,15 +10,8 @@ const url = 'https://jsonplaceholder.typicode.com/users?_limit=10';
 function App() {
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState([]);
-  const [theme, setTheme] = useState('ligth');
 
   const [isShowModal, setShowModal] = useState(false);
-
-  const changeTheme = () => {
-    document.body.setAttribute('data-theme', theme);
-  };
-
-  useEffect(changeTheme, [theme]);
 
   useEffect(() => {
     fetch(url)
@@ -45,7 +38,6 @@ function App() {
   }
 
   const addUser = (newUser) => {
-    console.table(newUser);
     let temp = [newUser, ...users];
     setUsers(temp);
     setShowModal(false);
@@ -58,15 +50,12 @@ function App() {
 
   return (
     <div className="App">
-      <header>
-        <ButtonCourse onClick={() => setShowModal(true)}>Add user</ButtonCourse>
-        <ButtonCourse
-          onClick={() => setTheme(theme === 'ligth' ? 'dark' : 'ligth')}
-        >
-          Change theme
-        </ButtonCourse>
-      </header>
-      <UserList users={users} deleteUser={deleteUser} />
+      <HeaderCourse />
+      <UserList
+        users={users}
+        deleteUser={deleteUser}
+        setShowModal={setShowModal}
+      />
       <ModalCourse show={isShowModal} close={closeMdl}>
         <UserForm createUser={addUser} roles={roles} />
       </ModalCourse>
@@ -74,3 +63,10 @@ function App() {
   );
 }
 export default App;
+
+// const obj = { typeSort: 'name', line: '' };
+
+// const newObj = { ...obj, line: 'Lesya' };
+
+// console.table(obj);
+// console.table(newObj);
