@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ButtonCourse } from '../Button/ButtonCourse';
 import './UserItem.css';
 
@@ -18,7 +19,7 @@ export const UserItem = ({
   return (
     <div className="user-item">
       <h3>
-        Name: <span>{nameNew}</span>
+        Name: <span>{nameNew}</span> <Link to="/contact">go to contact</Link>
       </h3>
       <h3>
         Age: <span>{age}</span> with role:<span>{role}</span>

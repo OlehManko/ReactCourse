@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { sortList } from '../../utils/helpers';
 import { ControlPlace } from '../ControlPlace/ControlPlace';
 import { UserItem } from '../UserItem/UserItem';
@@ -6,12 +6,22 @@ import { UserItem } from '../UserItem/UserItem';
 export const UserList = ({ users, deleteUser, setShowModal }) => {
   const [filter, setFilter] = useState({ typeSort: 'any', line: '' });
 
-  const sortedArray = sortList(
-    filter.typeSort,
-    users.filter((item) =>
+  const filterList = useMemo(() => {
+    console.log('re-render');
+    if (users === undefined) {
+      return [];
+    }
+
+    const temp = users.filter((item) =>
       item.name.toLowerCase().includes(filter.line.toLowerCase())
-    )
-  );
+    );
+
+    return temp;
+  }, [filter.line, users]);
+
+  const sortedArray = sortList(filter.typeSort, filterList);
+
+  if (15 < 10) return <div> Users empty list</div>;
 
   return (
     <>
