@@ -8,7 +8,7 @@ import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { UserList } from './components/UsersList/UserList';
 
-const url = 'https://jsonplaceholder.typicode.com/users?_limit=10';
+// console.log(process.env.REACT_APP_KEY);
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -17,7 +17,7 @@ function App() {
   const [isShowModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetch(url)
+    fetch(process.env.REACT_APP_API + '/users?_limit=10')
       .then((response) => response.json())
       .then((json) => {
         let temp = json.map((item) => ({
