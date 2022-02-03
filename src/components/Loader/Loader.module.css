@@ -1,0 +1,17 @@
+.loader-crs {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  border: 0.5rem solid red;
+  border-top-color: transparent;
+  animation: loader-course 0.9s infinite;
+}
+
+@keyframes loader-course {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

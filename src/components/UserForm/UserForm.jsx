@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { ButtonCourse } from "../Button/ButtonCourse";
-import "./UserForm.css";
+import React, { useEffect, useState } from 'react';
+import { ButtonCourse } from '../Button/ButtonCourse';
+import './UserForm.css';
 
 export const UserForm = ({ createUser, roles: ROLE_USER = [] }) => {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [age, setAge] = useState(33);
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState('');
   const [isDisabled, setDisabled] = useState(true);
 
   const changeAge = (e) => {
@@ -36,7 +36,7 @@ export const UserForm = ({ createUser, roles: ROLE_USER = [] }) => {
       <h2>Create User</h2>
       <label>Name user: </label>
       <input value={name} onChange={getName} />
-      {/* <input value={name} onChange={(e) => setName(e.target.value)} /> */}
+      {/* <input value={name} onChange={({ target }) => setName(target.value)} /> */}
 
       <label>Age: </label>
       <input value={age} onChange={changeAge} type="number" min={0} max={100} />

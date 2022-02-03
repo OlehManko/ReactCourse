@@ -1,0 +1,17 @@
+.menu-course > ul {
+  display: inline-grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 1rem;
+}
+
+.menu-course > ul > li {
+  list-style: none;
+}
+
+.menu-course > ul > li > a {
+  text-decoration: none;
+}
+
+.active-link {
+  color: red;
+}

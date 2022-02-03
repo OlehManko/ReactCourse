@@ -1,6 +1,6 @@
 .headercrs {
   display: grid;
-  grid-template-columns: repeat(3, max-content) 1fr;
+  grid-template-columns: 1fr max-content;
   gap: 1rem;
   border: 1px solid black;
   border-radius: 4px;

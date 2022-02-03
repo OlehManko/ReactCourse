@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ROUTE_CONTACT } from '../../utils/constants';
 import { ButtonCourse } from '../Button/ButtonCourse';
 import './UserItem.css';
 
@@ -15,11 +16,11 @@ export const UserItem = ({
   ...props
 }) => {
   const state = age < 20;
-  // console.table({ nameNew, age, id });
   return (
     <div className="user-item">
       <h3>
-        Name: <span>{nameNew}</span> <Link to="/contact">go to contact</Link>
+        Name: <span>{nameNew}</span>{' '}
+        <Link to={ROUTE_CONTACT}>go to contact</Link>
       </h3>
       <h3>
         Age: <span>{age}</span> with role:<span>{role}</span>

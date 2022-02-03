@@ -1,6 +1,7 @@
 import React from 'react';
 import classes from './ControlPlace.module.css';
 import { MdAddLink } from 'react-icons/md';
+import { OPEN_FORM } from '../../utils/constants';
 
 const SORT_PROP = [
   { value: 'any', label: 'Any' },
@@ -29,7 +30,7 @@ export const ControlPlace = ({ filter, setFilter, addUserDlg }) => {
       <MdAddLink
         size="2rem"
         className={classes['add-user']}
-        onClick={() => addUserDlg(true)}
+        onClick={() => addUserDlg(OPEN_FORM)}
       />
     </div>
   );

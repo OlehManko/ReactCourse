@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 import { NavLink } from 'react-router-dom';
+import { MenuCourse } from '../Menu/Menu';
 import styles from './Header.module.css';
 
 export const HeaderCourse = () => {
@@ -16,11 +17,15 @@ export const HeaderCourse = () => {
 
   return (
     <header className={styles.headercrs}>
-      <NavLink to={'/'}>Main</NavLink>
+      <MenuCourse />
+      {/* <NavLink to={'/'}>Main</NavLink>
       <NavLink to={'/contact'}>Contact</NavLink>
-      <NavLink to={'/about'}>About</NavLink>
-      {theme === 'light' && <MdDarkMode size={'2rem'} onClick={toggleTheme} />}
-      {theme === 'dark' && <MdLightMode size={'2rem'} onClick={toggleTheme} />}
+      <NavLink to={'/about'}>About</NavLink> */}
+      {theme === 'light' ? (
+        <MdDarkMode size={'2rem'} onClick={toggleTheme} />
+      ) : (
+        <MdLightMode size={'2rem'} onClick={toggleTheme} />
+      )}
     </header>
   );
 };
