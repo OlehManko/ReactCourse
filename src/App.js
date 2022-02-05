@@ -59,11 +59,11 @@ function App() {
   const addUser = (newUser) => {
     let temp = [newUser, ...users];
     setUsers(temp);
-    setShowModal(0);
+    setShowModal(CLOSE_MODAL);
   };
 
   const closeMdl = () => {
-    setShowModal(0);
+    setShowModal(CLOSE_MODAL);
   };
 
   return (

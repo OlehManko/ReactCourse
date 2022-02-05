@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { sortList } from '../../utils/helpers';
 import { ControlPlace } from '../ControlPlace/ControlPlace';
 import { UserItem } from '../UserItem/UserItem';
+import './UserList.css';
 
 export const UserList = ({ users, deleteUser, setShowModal }) => {
   const [filter, setFilter] = useState({ typeSort: 'any', line: '' });
@@ -30,17 +32,20 @@ export const UserList = ({ users, deleteUser, setShowModal }) => {
         addUserDlg={setShowModal}
       />
       {users?.length ? (
-        sortedArray.map((item, index) => (
-          <UserItem
-            name={item.name}
-            age={item.age}
-            role={item.role}
-            key={index}
-            removeThisUser={deleteUser}
-            id={item.id}
-            disabled={false}
-          />
-        ))
+        <TransitionGroup className="users-list">
+          {sortedArray.map((item, index) => (
+            <CSSTransition key={item.id} timeout={500} classNames="item">
+              <UserItem
+                name={item.name}
+                age={item.age}
+                role={item.role}
+                removeThisUser={deleteUser}
+                id={item.id}
+                disabled={false}
+              />
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
       ) : (
         <h1 style={{ textAlign: 'center' }}>Empty list</h1>
       )}
