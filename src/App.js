@@ -8,6 +8,7 @@ import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { UserList } from './components/UsersList/UserList';
 import {
+  CLOSE_MODAL,
   OPEN_FORM,
   OPEN_LOADER,
   ROUTE_ABOUT,
@@ -22,11 +23,14 @@ function App() {
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState([]);
 
-  const [isShowModal, setShowModal] = useState(0);
+  const [isShowModal, setShowModal] = useState(CLOSE_MODAL);
 
   useEffect(() => {
+    setShowModal(OPEN_LOADER);
     fetch(process.env.REACT_APP_API + '/users?_limit=10')
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((json) => {
         let temp = json.map((item) => ({
           name: item.name,
@@ -35,13 +39,17 @@ function App() {
           id: item.id,
         }));
         setUsers(temp);
-      });
+        let rolesCandidate = temp.map((item) => item.role);
+        setRoles(rolesCandidate);
+        setShowModal(CLOSE_MODAL);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
-  useEffect(() => {
-    let rolesCandidate = users.map((item) => item.role);
-    setRoles(rolesCandidate);
-  }, [users]);
+  // useEffect(() => {
+  //   let rolesCandidate = users.map((item) => item.role);
+  //   setRoles(rolesCandidate);
+  // }, [users]);
 
   function deleteUser(userID) {
     let temp = users.filter((item) => item.id !== userID);
@@ -107,3 +115,9 @@ export default App;
 // let b = [];
 // let b1 = (b || []).length;
 // console.log(b1 ? 'TRUE' : 'FALSE', b1);
+
+// let a = 10;
+
+// a < 10 && console.log('QQQ');
+
+// console.log('ANY code');

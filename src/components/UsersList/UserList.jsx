@@ -21,8 +21,6 @@ export const UserList = ({ users, deleteUser, setShowModal }) => {
 
   const sortedArray = sortList(filter.typeSort, filterList);
 
-  if (15 < 10) return <div> Users empty list</div>;
-
   return (
     <>
       <h2>Our emploees</h2>
