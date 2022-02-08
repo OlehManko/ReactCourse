@@ -1,12 +1,15 @@
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { AppContext } from '../../context';
 import { sortList } from '../../utils/helpers';
 import { ControlPlace } from '../ControlPlace/ControlPlace';
 import { UserItem } from '../UserItem/UserItem';
 import './UserList.css';
 
-export const UserList = ({ users, deleteUser, setShowModal }) => {
+export const UserList = () => {
   const [filter, setFilter] = useState({ typeSort: 'any', line: '' });
+
+  const { users, setShowModal } = useContext(AppContext);
 
   const filterList = useMemo(() => {
     console.log('re-render');
@@ -39,7 +42,6 @@ export const UserList = ({ users, deleteUser, setShowModal }) => {
                 name={item.name}
                 age={item.age}
                 role={item.role}
-                removeThisUser={deleteUser}
                 id={item.id}
                 disabled={false}
               />

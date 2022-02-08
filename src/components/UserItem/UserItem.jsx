@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AppContext } from '../../context';
 import { ROUTE_CONTACT } from '../../utils/constants';
 import { ButtonCourse } from '../Button/ButtonCourse';
 import './UserItem.css';
@@ -11,10 +12,10 @@ export const UserItem = ({
   name: nameNew,
   age,
   role = 'defaultValue',
-  removeThisUser,
   id,
   ...props
 }) => {
+  const { deleteUser } = useContext(AppContext);
   const state = age < 20;
   return (
     <div className="user-item">
@@ -26,7 +27,7 @@ export const UserItem = ({
         Age: <span>{age}</span> with role:<span>{role}</span>
       </h3>
       <ButtonCourse
-        onClick={(e) => removeThisUser(id)}
+        onClick={(e) => deleteUser(id)}
         variant="danger"
         disabled={state}
       >

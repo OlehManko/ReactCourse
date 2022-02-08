@@ -16,6 +16,7 @@ import {
   ROUTE_MAIN,
 } from './utils/constants';
 import { LoaderCourse } from './components/Loader/Loader';
+import { AppContext } from './context';
 
 // console.log(process.env.REACT_APP_KEY);
 
@@ -46,11 +47,6 @@ function App() {
       .catch((error) => console.log(error));
   }, []);
 
-  // useEffect(() => {
-  //   let rolesCandidate = users.map((item) => item.role);
-  //   setRoles(rolesCandidate);
-  // }, [users]);
-
   function deleteUser(userID) {
     let temp = users.filter((item) => item.id !== userID);
     setUsers(temp);
@@ -67,37 +63,32 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <HeaderCourse />
+    <AppContext.Provider value={{ users, addUser, deleteUser }}>
+      <div className="App">
+        <HeaderCourse />
 
-      <Routes>
-        <Route
-          path={ROUTE_MAIN}
-          element={
-            <UserList
-              users={users}
-              deleteUser={deleteUser}
-              setShowModal={setShowModal}
-            />
-          }
-        />
-        <Route path={ROUTE_CONTACT} element={<Contact />} />
-        <Route path={ROUTE_ABOUT} element={<About />} />
-        <Route path="*" element={<h2>Something went wrong :(</h2>} />
-      </Routes>
+        <Routes>
+          <Route path={ROUTE_MAIN} element={<UserList />} />
+          <Route path={ROUTE_CONTACT} element={<Contact />} />
+          <Route path={ROUTE_ABOUT} element={<About />} />
+          <Route path="*" element={<h2>Something went wrong :(</h2>} />
+        </Routes>
 
-      <ModalCourse show={isShowModal} close={closeMdl}>
-        {isShowModal === OPEN_FORM && (
-          <UserForm createUser={addUser} roles={roles} />
-        )}
-        {isShowModal === OPEN_LOADER && <LoaderCourse />}
-      </ModalCourse>
-    </div>
+        <ModalCourse show={isShowModal} close={closeMdl}>
+          {isShowModal === OPEN_FORM && (
+            <UserForm createUser={addUser} roles={roles} />
+          )}
+          {isShowModal === OPEN_LOADER && <LoaderCourse />}
+        </ModalCourse>
+      </div>
+    </AppContext.Provider>
   );
 }
 export default App;
 
 // const obj = { typeSort: 'name', line: '' };
+
+// console.log(Object.keys(obj).includes('line1'));
 
 // const newObj = { ...obj, line: 'Lesya' };
 
