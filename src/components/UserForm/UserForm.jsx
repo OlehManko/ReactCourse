@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { AppContext } from '../../context';
 import { ButtonCourse } from '../Button/ButtonCourse';
 import './UserForm.css';
 
-export const UserForm = ({ createUser, roles: ROLE_USER = [] }) => {
+export const UserForm = () => {
   const [name, setName] = useState('');
   const [age, setAge] = useState(33);
   const [role, setRole] = useState('');
   const [isDisabled, setDisabled] = useState(true);
+
+  const { addUser, roles: ROLE_USER = [] } = useContext(AppContext);
 
   const changeAge = (e) => {
     let temp = e.target.value;
@@ -28,7 +31,7 @@ export const UserForm = ({ createUser, roles: ROLE_USER = [] }) => {
   const handleData = (e) => {
     e.preventDefault();
     const newUser = { name, age, role, id: Date.now() };
-    createUser(newUser);
+    addUser(newUser);
   };
 
   return (

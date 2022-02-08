@@ -23,6 +23,7 @@ import { AppContext } from './context';
 function App() {
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState([]);
+  const [isAuth, setAuth] = useState('');
 
   const [isShowModal, setShowModal] = useState(CLOSE_MODAL);
 
@@ -63,21 +64,22 @@ function App() {
   };
 
   return (
-    <AppContext.Provider value={{ users, addUser, deleteUser }}>
+    <AppContext.Provider value={{ users, addUser, deleteUser, roles, isAuth }}>
       <div className="App">
         <HeaderCourse />
 
         <Routes>
-          <Route path={ROUTE_MAIN} element={<UserList />} />
+          <Route
+            path={ROUTE_MAIN}
+            element={<UserList setShowModal={setShowModal} />}
+          />
           <Route path={ROUTE_CONTACT} element={<Contact />} />
           <Route path={ROUTE_ABOUT} element={<About />} />
           <Route path="*" element={<h2>Something went wrong :(</h2>} />
         </Routes>
 
         <ModalCourse show={isShowModal} close={closeMdl}>
-          {isShowModal === OPEN_FORM && (
-            <UserForm createUser={addUser} roles={roles} />
-          )}
+          {isShowModal === OPEN_FORM && <UserForm />}
           {isShowModal === OPEN_LOADER && <LoaderCourse />}
         </ModalCourse>
       </div>

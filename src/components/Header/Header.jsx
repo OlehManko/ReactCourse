@@ -18,9 +18,6 @@ export const HeaderCourse = () => {
   return (
     <header className={styles.headercrs}>
       <MenuCourse />
-      {/* <NavLink to={'/'}>Main</NavLink>
-      <NavLink to={'/contact'}>Contact</NavLink>
-      <NavLink to={'/about'}>About</NavLink> */}
       {theme === 'light' ? (
         <MdDarkMode size={'2rem'} onClick={toggleTheme} />
       ) : (

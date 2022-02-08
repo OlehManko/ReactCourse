@@ -6,10 +6,10 @@ import { ControlPlace } from '../ControlPlace/ControlPlace';
 import { UserItem } from '../UserItem/UserItem';
 import './UserList.css';
 
-export const UserList = () => {
+export const UserList = ({ setShowModal }) => {
   const [filter, setFilter] = useState({ typeSort: 'any', line: '' });
 
-  const { users, setShowModal } = useContext(AppContext);
+  const { users } = useContext(AppContext);
 
   const filterList = useMemo(() => {
     console.log('re-render');
