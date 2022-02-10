@@ -22,7 +22,9 @@ export const MenuCourse = () => {
             <NavLink
               to={item.path}
               className={({ isActive }) =>
-                isActive ? classes['active-link'] : ''
+                isActive
+                  ? [classes['active-link'], classes['link']].join(' ')
+                  : classes['link']
               }
             >
               {item.label}

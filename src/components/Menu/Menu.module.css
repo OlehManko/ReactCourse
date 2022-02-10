@@ -8,10 +8,10 @@
   list-style: none;
 }
 
-.menu-course > ul > li > a {
-  text-decoration: none;
-}
-
 .active-link {
   color: red;
+}
+
+.link {
+  text-decoration: none;
 }

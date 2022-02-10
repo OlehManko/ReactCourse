@@ -1,6 +1,6 @@
 // Our routes
 export const ROUTE_MAIN = '/';
-export const ROUTE_CONTACT = '/cotact/:id';
+export const ROUTE_CONTACT = '/contact';
 export const ROUTE_ABOUT = '/about';
 
 // For Modal

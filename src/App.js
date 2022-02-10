@@ -24,13 +24,15 @@ function App() {
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState([]);
   const [isAuth, setAuth] = useState('');
+  const [page, setPage] = useState(1);
 
   const [isShowModal, setShowModal] = useState(CLOSE_MODAL);
 
   useEffect(() => {
     setShowModal(OPEN_LOADER);
-    fetch(process.env.REACT_APP_API + '/users?_limit=10')
+    fetch(process.env.REACT_APP_API + '/users?_limit=10&_page=1')
       .then((response) => {
+        // console.log(response.headers.get('x-total-count'));
         return response.json();
       })
       .then((json) => {
