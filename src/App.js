@@ -14,12 +14,16 @@ import {
   ROUTE_ABOUT,
   ROUTE_CONTACT,
   ROUTE_MAIN,
+  ROUTE_PRODUCT,
 } from './utils/constants';
 import { LoaderCourse } from './components/Loader/Loader';
 import { AppContext } from './context';
 import { PrivateRoute } from './components/PrivateRoute';
+import { Product } from './components/Product';
 
 // console.log(process.env.REACT_APP_KEY);
+
+const LIMIT_PAGE = 2;
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -31,7 +35,9 @@ function App() {
 
   useEffect(() => {
     setShowModal(OPEN_LOADER);
-    fetch(process.env.REACT_APP_API + '/users?_limit=10&_page=1')
+    fetch(
+      process.env.REACT_APP_API + `/users?_limit=${LIMIT_PAGE}&_page=${page}`
+    )
       .then((response) => {
         // console.log(response.headers.get('x-total-count'));
         return response.json();
@@ -49,7 +55,7 @@ function App() {
         setShowModal(CLOSE_MODAL);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [page]);
 
   function deleteUser(userID) {
     let temp = users.filter((item) => item.id !== userID);
@@ -86,8 +92,15 @@ function App() {
           />
 
           <Route path={ROUTE_ABOUT} element={<About />} />
+          <Route path={ROUTE_PRODUCT} element={<Product />} />
           <Route path="*" element={<h2>Something went wrong :(</h2>} />
         </Routes>
+        <div>
+          <button onClick={() => setPage(1)} style={{ marginRight: '2rem' }}>
+            1
+          </button>
+          <button onClick={() => setPage(2)}>2</button>
+        </div>
 
         <ModalCourse show={isShowModal} close={closeMdl}>
           {isShowModal === OPEN_FORM && <UserForm />}
