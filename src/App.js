@@ -17,6 +17,7 @@ import {
 } from './utils/constants';
 import { LoaderCourse } from './components/Loader/Loader';
 import { AppContext } from './context';
+import { PrivateRoute } from './components/PrivateRoute';
 
 // console.log(process.env.REACT_APP_KEY);
 
@@ -75,7 +76,15 @@ function App() {
             path={ROUTE_MAIN}
             element={<UserList setShowModal={setShowModal} />}
           />
-          <Route path={ROUTE_CONTACT} element={<Contact />} />
+          <Route
+            path={ROUTE_CONTACT}
+            element={
+              <PrivateRoute>
+                <Contact />
+              </PrivateRoute>
+            }
+          />
+
           <Route path={ROUTE_ABOUT} element={<About />} />
           <Route path="*" element={<h2>Something went wrong :(</h2>} />
         </Routes>
