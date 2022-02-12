@@ -25,7 +25,9 @@ import { UserCard } from './components/UserCard';
 
 // console.log(process.env.REACT_APP_KEY);
 
-const LIMIT_PAGE = 2;
+const LIMIT_PAGE = 5;
+
+const HERO = { name: 'Grishin', level: 80 };
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -82,7 +84,7 @@ function App() {
         <Routes>
           <Route
             path={ROUTE_MAIN}
-            element={<UserList setShowModal={setShowModal} />}
+            element={<UserList setShowModal={setShowModal} hero={HERO} />}
           />
           <Route
             path={ROUTE_CONTACT}
@@ -95,7 +97,10 @@ function App() {
 
           <Route path={ROUTE_ABOUT} element={<About />} />
           <Route path={ROUTE_PRODUCT} element={<Product />} />
-          <Route path={ROUTE_USERCARD + ':id'} element={<UserCard />} />
+          <Route
+            path={ROUTE_USERCARD + ':id'}
+            element={<UserCard setShowModal={setShowModal} />}
+          />
           <Route path="*" element={<h2>Something went wrong :(</h2>} />
         </Routes>
         <div>
@@ -141,3 +146,8 @@ export default App;
 // a < 10 && console.log('QQQ');
 
 // console.log('ANY code');
+
+// let ss = (aa)=>{console.log('asdasdsa' + aa)}
+
+// onClick(()=>ss('asasas'))
+// onClick(()=>{console.log('asdasdsa')})

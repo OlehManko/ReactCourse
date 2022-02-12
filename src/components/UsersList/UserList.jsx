@@ -6,7 +6,11 @@ import { ControlPlace } from '../ControlPlace/ControlPlace';
 import { UserItem } from '../UserItem/UserItem';
 import './UserList.css';
 
-export const UserList = ({ setShowModal }) => {
+export const UserList = (props) => {
+  const {
+    setShowModal,
+    hero: { name: nameAnother = 'Oleh', level = 79 },
+  } = props;
   const [filter, setFilter] = useState({ typeSort: 'any', line: '' });
 
   const { users } = useContext(AppContext);
@@ -28,7 +32,9 @@ export const UserList = ({ setShowModal }) => {
 
   return (
     <>
-      <h2>Our emploees</h2>
+      <h2>
+        Our emploees {nameAnother || 'Nicolayevich'} with level: {level}
+      </h2>
       <ControlPlace
         filter={filter}
         setFilter={setFilter}
