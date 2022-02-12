@@ -15,11 +15,13 @@ import {
   ROUTE_CONTACT,
   ROUTE_MAIN,
   ROUTE_PRODUCT,
+  ROUTE_USERCARD,
 } from './utils/constants';
 import { LoaderCourse } from './components/Loader/Loader';
 import { AppContext } from './context';
 import { PrivateRoute } from './components/PrivateRoute';
 import { Product } from './components/Product';
+import { UserCard } from './components/UserCard';
 
 // console.log(process.env.REACT_APP_KEY);
 
@@ -27,7 +29,7 @@ const LIMIT_PAGE = 2;
 
 function App() {
   const [users, setUsers] = useState([]);
-  const [roles, setRoles] = useState([]);
+  const [roles, setRoles] = useState(() => []);
   const [isAuth, setAuth] = useState('');
   const [page, setPage] = useState(1);
 
@@ -93,6 +95,7 @@ function App() {
 
           <Route path={ROUTE_ABOUT} element={<About />} />
           <Route path={ROUTE_PRODUCT} element={<Product />} />
+          <Route path={ROUTE_USERCARD + ':id'} element={<UserCard />} />
           <Route path="*" element={<h2>Something went wrong :(</h2>} />
         </Routes>
         <div>
