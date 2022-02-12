@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context';
+import people from '../assets/people2.jpg';
+
+console.log(people);
 
 export const About = () => {
   const { users, deleteUser } = useContext(AppContext);
@@ -18,6 +21,7 @@ export const About = () => {
       >
         {name || 'Unknown'}
       </h2>
+      <img src={people} alt="black man" />
     </div>
   );
 };

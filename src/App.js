@@ -151,3 +151,24 @@ export default App;
 
 // onClick(()=>ss('asasas'))
 // onClick(()=>{console.log('asdasdsa')})
+
+// const line = 'Sergeyse';
+
+// console.log(line.toLowerCase().startsWith('se'.toLowerCase()));
+
+// function OuterFunc(a) {
+//   let b = 0;
+//   return function (c) {
+//     console.log('Inner function ', a + b + c);
+//     b += 1;
+//     console.log('counter: ', b);
+//   };
+// }
+
+// let func = OuterFunc(2);
+
+// func(10);
+// func(20);
+// func(30);
+
+// console.log(func);
